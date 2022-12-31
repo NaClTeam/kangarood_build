@@ -1,8 +1,11 @@
-#!/system/bin/sh
+#!/usr/bin/zsh
+
+set -e
+
 echo "Are you sure?"
 ./umount.sh
-find rootfs/dev rootfs/proc rootfs/sys
-read
-rm -rf rootfs
-find .
+sudo find rootfs/dev rootfs/proc rootfs/sys || true
+read 1
+sudo rm -rf rootfs
+sudo find .
 echo "bruh"

@@ -1,13 +1,16 @@
 #!/usr/bin/zsh
+
+set -e
+
 echo "clean!!"
 ./clean.sh
 echo "cleanned"
-sudo ./apk -X http://mirrors4.bfsu.edu.cn/alpine/edge/main -X http://mirrors4.bfsu.edu.cn/alpine/edge/community -U --allow-untrusted -p rootfs --initdb add --no-cache alpine-base coreutils bash bash-completion shadow patchelf
+sudo ./apk -X http://cmcc.mirrors.ustc.edu.cn/alpine/edge/main -X http://cmcc.mirrors.ustc.edu.cn/alpine/edge/community -U --allow-untrusted -p rootfs --initdb add --no-cache alpine-base coreutils bash bash-completion shadow patchelf
 
 cd rootfs
 
-sudo su -c "echo 'https://mirrors4.bfsu.edu.cn/alpine/edge/main' > etc/apk/repositories"
-sudo su -c "echo 'https://mirrors4.bfsu.edu.cn/alpine/edge/community' >> etc/apk/repositories"
+sudo su -c "echo 'https://cmcc.mirrors.ustc.edu.cn/alpine/edge/main' > etc/apk/repositories"
+sudo su -c "echo 'https://cmcc.mirrors.ustc.edu.cn/alpine/edge/community' >> etc/apk/repositories"
 sudo cp /etc/resolv.conf etc/resolv.conf
 
 sudo mount -o bind /dev dev
@@ -27,4 +30,4 @@ sudo umount dev/pts dev proc sys
 sudo find dev proc sys
 
 cd ..
-sudo chown imfatf1sh:imfatf1sh appstatic ca-certificates.crt
+sudo chown yurri:yurri appstatic ca-certificates.crt
